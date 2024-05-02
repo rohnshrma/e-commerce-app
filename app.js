@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 const dotenv = require("bcrypt")
 
 const authRoutes = require("./routes/authRoutes")
-
+const PORT = 5000;
 
 mongoose.connect("mongodb://localhost:27017/e-commerceDB")
 .then(()=>{
@@ -21,10 +21,10 @@ console.log("Error while connecting to DB =>", err);
 
 
 // middlewares 
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
 app.use(express.static("public"))
 app.set("view engine","ejs")
 
 
-
+// using user defined routes
 app.use(authRoutes)
